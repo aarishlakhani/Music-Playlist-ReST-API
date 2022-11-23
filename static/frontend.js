@@ -18,6 +18,14 @@ trackSearchForm.addEventListener("submit", function (e) {
   )
     .then((res) => res.json())
     .then(function (data) {
+      const paragraph = document.createElement("p");
+
+      while (resultsDiv.hasChildNodes()) {
+        resultsDiv.removeChild(resultsDiv.firstChild);
+      }
+
+      paragraph.appendChild(document.createTextNode(JSON.stringify(data)));
+      resultsDiv.appendChild(paragraph);
       console.log(data);
     })
     .catch((err) => console.log(err));
@@ -37,6 +45,15 @@ artistSearchForm.addEventListener("submit", function (e) {
   )
     .then((res) => res.json())
     .then(function (data) {
+      const paragraph = document.createElement("p");
+
+      while (resultsDiv.hasChildNodes()) {
+        resultsDiv.removeChild(resultsDiv.firstChild);
+      }
+
+      paragraph.appendChild(document.createTextNode(JSON.stringify(data)));
+      resultsDiv.appendChild(paragraph);
+
       console.log(data);
     })
     .catch((err) => console.log(err));
@@ -56,6 +73,14 @@ albumSearchForm.addEventListener("submit", function (e) {
   )
     .then((res) => res.json())
     .then(function (data) {
+      const paragraph = document.createElement("p");
+
+      while (resultsDiv.hasChildNodes()) {
+        resultsDiv.removeChild(resultsDiv.firstChild);
+      }
+
+      paragraph.appendChild(document.createTextNode(JSON.stringify(data)));
+      resultsDiv.appendChild(paragraph);
       console.log(data);
     })
     .catch((err) => console.log(err));

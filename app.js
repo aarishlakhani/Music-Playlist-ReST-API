@@ -43,7 +43,33 @@ app.get("/returnTracks", function (req, res) {
     track.track_title.toString().toLowerCase().includes(search.toLowerCase())
   );
 
-  res.json(resultArray);
+  let resultJSON = [];
+  let size = 0;
+
+  if (resultArray.length < 25) {
+    size = resultArray.length;
+  } else {
+    size = 25;
+  }
+
+  for (var i = 0; i < size; i++) {
+    let varJSON = {};
+    varJSON.track_id = resultArray[i].track_id;
+    varJSON.track_title = resultArray[i].track_title;
+    varJSON.album_id = resultArray[i].album_id;
+    varJSON.album_title = resultArray[i].album_title;
+    varJSON.artist_id = resultArray[i].artist_id;
+    varJSON.artist_name = resultArray[i].artist_name;
+    varJSON.tags = resultArray[i].tags;
+    varJSON.track_date_created = resultArray[i].track_date_created;
+    varJSON.track_date_recorded = resultArray[i].track_date_recorded;
+    varJSON.track_duration = resultArray[i].track_duration;
+    varJSON.track_genres = resultArray[i].track_genres;
+    varJSON.track_number = resultArray[i].track_number;
+    resultJSON.push(varJSON);
+  }
+
+  res.send(resultJSON);
 });
 
 //search function for artist name
@@ -54,7 +80,27 @@ app.get("/returnArtists", function (req, res) {
     artist.artist_name.toString().toLowerCase().includes(search.toLowerCase())
   );
 
-  res.json(resultArray);
+  let resultJSON = [];
+  let size = 0;
+
+  if (resultArray.length < 25) {
+    size = resultArray.length;
+  } else {
+    size = 25;
+  }
+
+  for (let i = 0; i < size; i++) {
+    let varJSON = {};
+    varJSON.artist_name = resultArray[i].artist_name;
+    varJSON.artist_id = resultArray[i].artist_id;
+    varJSON.artist_date_created = resultArray[i].artist_date_created;
+    varJSON.artist_location = resultArray[i].artist_location;
+    varJSON.artist_active_year_begin = resultArray[i].artist_active_year_begin;
+    varJSON.artist_favorites = resultArray[i].artist_favorites;
+    resultJSON.push(varJSON);
+  }
+
+  res.send(resultJSON);
 });
 
 //search function for album name
@@ -65,5 +111,31 @@ app.get("/returnAlbum", function (req, res) {
     tracks.album_title.toString().toLowerCase().includes(search.toLowerCase())
   );
 
-  res.json(resultArray);
+  let resultJSON = [];
+  let size = 0;
+
+  if (resultArray.length < 25) {
+    size = resultArray.length;
+  } else {
+    size = 25;
+  }
+
+  for (let i = 0; i < size; i++) {
+    let varJSON = {};
+    varJSON.track_id = resultArray[i].track_id;
+    varJSON.track_title = resultArray[i].track_title;
+    varJSON.album_id = resultArray[i].album_id;
+    varJSON.album_title = resultArray[i].album_title;
+    varJSON.artist_id = resultArray[i].artist_id;
+    varJSON.artist_name = resultArray[i].artist_name;
+    varJSON.tags = resultArray[i].tags;
+    varJSON.track_date_created = resultArray[i].track_date_created;
+    varJSON.track_date_recorded = resultArray[i].track_date_recorded;
+    varJSON.track_duration = resultArray[i].track_duration;
+    varJSON.track_genres = resultArray[i].track_genres;
+    varJSON.track_number = resultArray[i].track_number;
+    resultJSON.push(varJSON);
+  }
+
+  res.send(resultJSON);
 });

@@ -5,6 +5,8 @@ var albumSearchForm = document.getElementById("albumForm");
 var resultsDiv = document.getElementById("resultsDiv");
 var playlistAddForm = document.getElementById("playlistForm");
 
+var playlists = {};
+
 trackSearchForm.addEventListener("submit", function (e) {
   e.preventDefault(); //prevents default ghost clicks
 

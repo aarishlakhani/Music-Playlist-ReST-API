@@ -1,3 +1,4 @@
+//setting up the express server documention
 const express = require("express");
 const res = require("express/lib/response");
 const app = express();
@@ -12,6 +13,7 @@ app.get("/api/courses", (req, res) => {
 });
 app.listen(3000, () => console.log("Listening on port 3000..."));
 
+//csv parser
 const allGenres = [];
 const allAlbums = [];
 const allArtists = [];
@@ -33,8 +35,35 @@ fs.createReadStream("lab3-data/raw_tracks.csv")
   .pipe(csv({}))
   .on("data", (data) => allTracks.push(data));
 
+//search function for tracks
 app.get("/returnTracks", function (req, res) {
   let search = req.query.userTrack;
 
-  res.json(allAlbums);
+  let resultArray = allTracks.filter((track) =>
+    track.track_title.toString().toLowerCase().includes(search.toLowerCase())
+  );
+
+  res.json(resultArray);
+});
+
+//search function for artist name
+app.get("/returnArtists", function (req, res) {
+  let search = req.query.userArtist;
+
+  let resultArray = allArtists.filter((artist) =>
+    artist.artist_name.toString().toLowerCase().includes(search.toLowerCase())
+  );
+
+  res.json(resultArray);
+});
+
+//search function for album name
+app.get("/returnAlbum", function (req, res) {
+  let search = req.query.userAlbum;
+
+  let resultArray = allTracks.filter((tracks) =>
+    tracks.album_title.toString().toLowerCase().includes(search.toLowerCase())
+  );
+
+  res.json(resultArray);
 });

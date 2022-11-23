@@ -7,18 +7,22 @@
     <link rel="stylesheet" href="music.css" />
   </head>
   <body>
-    <input type="text" placeholder="Search by Track" />
-    <button onclick="trackSearch()">Search</button>
-
-    <input type="text" placeholder="Search by artist name" />
-    <button onclick="artistSearch()">Search</button>
-
-    <input type="text" placeholder="Search by Album" />
-    <button onclick="albumSearch()">Search</button>
-
-    <input type="text" placeholder="Create Playlist" />
-    <button onclick="addPlaylist()">Add Playlist</button>
-
-    <script src="sandbox.js"></script>
+    <form id="tracksForm">
+      <input type="text" id="userTrack" placeholder="Search by Track" />
+      <button>Search</button>
+    </form>
+    <form id="artistForm">
+      <input type="text" placeholder="Search by artist name" />
+      <button onclick="artistSearch()">Search</button>
+    </form>
+    <form id="albumForm">
+      <input type="text" placeholder="Search by Album" />
+      <button onclick="albumSearch()">Search</button>
+    </form>
+    <form id="playlistForm">
+      <input type="text" placeholder="Create Playlist" />
+      <button onclick="addPlaylist()">Add Playlist</button>
+    </form>
+    <script src="frontend.js"></script>
   </body>
 </html>

@@ -2,6 +2,9 @@ const express = require("express");
 const res = require("express/lib/response");
 const app = express();
 
+const csv = require("csv-parser");
+const fs = require("fs");
+
 app.use("/", express.static("static"));
 
 app.get("/api/courses", (req, res) => {
@@ -9,8 +12,29 @@ app.get("/api/courses", (req, res) => {
 });
 app.listen(3000, () => console.log("Listening on port 3000..."));
 
+const allGenres = [];
+const allAlbums = [];
+const allArtists = [];
+const allTracks = [];
+
+fs.createReadStream("lab3-data/genres.csv")
+  .pipe(csv({}))
+  .on("data", (data) => allGenres.push(data));
+
+fs.createReadStream("lab3-data/raw_albums.csv")
+  .pipe(csv({}))
+  .on("data", (data) => allAlbums.push(data));
+
+fs.createReadStream("lab3-data/raw_artists.csv")
+  .pipe(csv({}))
+  .on("data", (data) => allArtists.push(data));
+
+fs.createReadStream("lab3-data/raw_tracks.csv")
+  .pipe(csv({}))
+  .on("data", (data) => allTracks.push(data));
+
 app.get("/returnTracks", function (req, res) {
   let search = req.query.userTrack;
 
-  res.json(search);
+  res.json(allAlbums);
 });
